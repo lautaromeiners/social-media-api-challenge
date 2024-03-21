@@ -7,25 +7,25 @@ from rest_framework.generics import ListAPIView, RetrieveAPIView, CreateAPIView
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 from .models import User
-from .serializers import UserSerializer
+from .serializers import BaseUserSerializer, UserDetailSerializer
 
 
 class UserList(ListAPIView):
     permission_classes = [IsAuthenticated]
     queryset = User.objects.all()
-    serializer_class = UserSerializer
+    serializer_class = BaseUserSerializer
 
 
 class UserDetail(RetrieveAPIView):
     permission_classes = [IsAuthenticated]
     queryset = User.objects.all()
-    serializer_class = UserSerializer
+    serializer_class = UserDetailSerializer
 
 
 class UserCreate(CreateAPIView):
     permission_classes = [AllowAny]
     queryset = User.objects.all()
-    serializer_class = UserSerializer
+    serializer_class = BaseUserSerializer
 
     def perform_create(self, serializer):
         user = serializer.save()

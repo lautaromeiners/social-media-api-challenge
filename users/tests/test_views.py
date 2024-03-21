@@ -5,7 +5,7 @@ from rest_framework.test import APITestCase
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.authtoken.models import Token
 from users.models import User
-from users.serializers import UserSerializer
+from users.serializers import BaseUserSerializer
 from users.views import UserList, UserDetail, UserCreate, UserFollow, UserUnfollow
 
 
