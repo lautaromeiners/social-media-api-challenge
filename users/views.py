@@ -22,7 +22,7 @@ class UserDetail(RetrieveAPIView):
     serializer_class = UserSerializer
 
 
-class CreateUser(CreateAPIView):
+class UserCreate(CreateAPIView):
     permission_classes = [AllowAny]
     queryset = User.objects.all()
     serializer_class = UserSerializer
@@ -34,12 +34,23 @@ class CreateUser(CreateAPIView):
         return super().perform_create(serializer)
 
 
-class FollowUser(APIView):
+class UserFollow(APIView):
     permission_classes = [IsAuthenticated]
 
-    def post(self, request, pk, folowee_pk):
-        followee = get_object_or_404(User, pk=folowee_pk)
+    def post(self, request, pk, followee_pk):
+        followee = get_object_or_404(User, pk=followee_pk)
         follower = request.user
-        follower.following.add(followee)
+        follower.follow(followee)
+        follower.save()
+        return Response(status=status.HTTP_200_OK)
+
+
+class UserUnfollow(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, pk, following_pk):
+        following = get_object_or_404(User, pk=following_pk)
+        follower = request.user
+        follower.unfollow(following)
         follower.save()
         return Response(status=status.HTTP_200_OK)
