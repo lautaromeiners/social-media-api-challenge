@@ -1,0 +1,15 @@
+asgiref==3.8.0
+backports.zoneinfo==0.2.1
+black==24.3.0
+click==8.1.7
+Django==4.2.11
+django-filter==24.1
+djangorestframework==3.14.0
+mypy-extensions==1.0.0
+packaging==24.0
+pathspec==0.12.1
+platformdirs==4.2.0
+pytz==2024.1
+sqlparse==0.4.4
+tomli==2.0.1
+typing-extensions==4.10.0
